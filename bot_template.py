@@ -4,6 +4,8 @@ import BOTNAME_storage
 
 client = discord.Client()
 
+#On bot startup/ready
+@client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
 
@@ -13,6 +15,8 @@ async def on_ready():
         cmd = await ainput()
         await handleCline(cmd)
 
+#On message received
+@client.event
 async def on_message(message):
     if message.author == client.user or message.content == None:
         return
