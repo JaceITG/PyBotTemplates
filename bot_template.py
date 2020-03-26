@@ -41,30 +41,52 @@ async def on_message(message):
     else:
         await implicit(message)
 
+#Prefixed commands
 async def prefixed(message):
     #### Message property variables ####
-    cmd = msg.content[1:]
+    cmd = message.content[len(BOTNAME_storage.PREFIX):]
     args = cmd.split(' ')
     lower = cmd.lower()
     argsLower = lower.split(' ')
-    author = msg.author
-    channel = msg.channel
-    guild = msg.guild
+    author = message.author
+    channel = message.channel
+    guild = message.guild
     ####################################
 
     if cmd == "help":
         await sendEmbed(BOTNAME_storage.HELP_EMBED, channel)
 
+#Implicit commands
 async def implicit(message):
     #### Message property variables ####
-    text = msg.content
+    text = message.content
     lower = text.lower()
-    channel = msg.channel
-    author = msg.author
+    channel = message.channel
+    author = message.author
     ####################################
 
     if lower == "ping":
         await sendMsg("pong", channel)
+
+#Admin commands
+async def adminCmd(message):
+    text = message.content
+    channel = message.channel
+    lower = text.lower()
+    guild = message.guild
+    #Implicits
+
+    #Prefixed
+    if text == '' or text[0] != BOTNAME_storage.PREFIX:
+        return
+    cmd = text[1:].split(" ")
+
+
+    if cmd[0]=='dm':
+        #Intended recipient ID
+        dmUser = client.get_user(int(cmd[1]))
+        dmMsg = ' '.join(cmd[2:])
+        await sendMsg(dmMsg,dmUser)
 
 #######################################################
 ################## Utility Functions ##################
