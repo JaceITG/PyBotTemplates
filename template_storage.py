@@ -3,7 +3,7 @@ import discord
 PREFIX = "PREFIX"
 ADMIN_ID = [000000000000000000]
 TOKEN = 'TOKEN'
-MAIN_CHAT_ID = 000000000000000000
+MAIN_CHAT_ID = 000000000000000000   #Default channel ID, where announcements are sent
 
 ###### Help Embed ######
 HELP_EMBED = discord.Embed(title="BOTNAME Commands", description=f"Prefix: `{PREFIX}`")
