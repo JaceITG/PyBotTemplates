@@ -2,7 +2,8 @@ import discord, random
 from aioconsole import ainput
 import BOTNAME_storage
 
-client = discord.Client()
+intents = discord.Intents.all()
+client = discord.Client(intents=intents)
 
 #On bot startup/ready
 @client.event
